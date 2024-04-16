@@ -65,9 +65,9 @@ class MyStack:
         self.one_q = MyQueue()
         self.two_q = MyQueue()
 
-    def push(self, x: int) -> None:
+    def push(self, val: int) -> None:
         """Pushes an element onto the stack"""
-        self.one_q.push(x)
+        self.one_q.push(val)
 
     def pop(self) -> int:
         """Removes and returns the top element from the stack"""

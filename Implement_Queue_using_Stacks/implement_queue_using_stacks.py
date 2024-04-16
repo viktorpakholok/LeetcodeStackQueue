@@ -52,9 +52,9 @@ class MyQueue:
         self.one_s = MyStack()
         self.sec_s = MyStack()
 
-    def push(self, x: int) -> None:
+    def push(self, val: int) -> None:
         """Pushes an element into the queue"""
-        self.one_s.push(x)
+        self.one_s.push(val)
 
     def pop(self) -> int:
         """Removes and returns the front element from the queue"""

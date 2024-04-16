@@ -65,6 +65,7 @@ class FreqStack:
                 self.max_ -= 1
                 return was
             head = head.next
+        return None
 
     def __str__(self) -> str:
         head = self.head
