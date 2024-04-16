@@ -61,3 +61,32 @@ class MyQueue:
 
 class MyStack:
     """"""
+    def __init__(self):
+        self.one_q = MyQueue()
+        self.two_q = MyQueue()
+
+    def push(self, x: int) -> None:
+        self.one_q.push(x)
+
+    def pop(self) -> int:
+        head = self.one_q.head
+        while head.next:
+            self.two_q.push(self.one_q.pop())
+
+        self.one_q, self.two_q = self.two_q, self.one_q
+        return self.two_q.pop()
+
+
+    def top(self) -> int:
+        head = self.one_q.head
+        while head.next:
+            self.two_q.push(self.one_q.pop())
+
+        ret  = self.one_q.pop()
+        self.two_q.push(ret)
+
+        self.one_q, self.two_q = self.two_q, self.one_q
+        return ret
+
+    def empty(self) -> bool:
+        return self.one_q.is_empty()
