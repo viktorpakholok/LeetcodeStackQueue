@@ -1,8 +1,8 @@
-""""""
+"""Module with implemtentation of Queue with 2 stacks"""
 
 class Node:
-    """"""
-    def __init__(self, data, next_=None):
+    """A class representing a node in a linked list"""
+    def __init__(self, data: int, next_ = None):
         self.data = data
         self.next = next_
 
@@ -11,33 +11,33 @@ class Node:
 
 
 class MyStack:
-    """"""
+    """A class representing a stack data structure using a linked list"""
     def __init__(self) -> None:
         self.head = None
 
-    def push(self, val):
-        """"""
+    def push(self, val: int) -> None:
+        """Pushes a new element onto the stack"""
         if self.head is None:
             self.head = Node(val)
         else:
             self.head = Node(val, self.head)
 
-    def pop(self):
-        """"""
+    def pop(self) -> int:
+        """Removes and returns the top element from the stack"""
         was = self.head.data
         self.head = self.head.next
         return was
 
-    def peek(self):
-        """"""
+    def peek(self) -> int:
+        """Returns the value of the top element without removing it"""
         return self.head.data
 
-    def empty(self):
-        """"""
+    def empty(self) -> bool:
+        """Checks if the stack is empty"""
         return self.head is None
 
     def __str__(self) -> str:
-        """"""
+        """Returns a string representation of the stack"""
         head = self.head
         res = 'Stack: '
         while head:
@@ -47,17 +47,17 @@ class MyStack:
 
 
 class MyQueue:
-    """"""
+    """A class representing a queue data structure using two stacks"""
     def __init__(self):
         self.one_s = MyStack()
         self.sec_s = MyStack()
 
     def push(self, x: int) -> None:
-        """"""
+        """Pushes an element into the queue"""
         self.one_s.push(x)
 
     def pop(self) -> int:
-        """"""
+        """Removes and returns the front element from the queue"""
         while self.one_s.head:
             self.sec_s.push(self.one_s.pop())
 
@@ -70,7 +70,7 @@ class MyQueue:
         return ret
 
     def peek(self) -> int:
-        """"""
+        """Returns the value of the front element without removing it"""
         while self.one_s.head:
             self.sec_s.push(self.one_s.pop())
 
@@ -83,5 +83,5 @@ class MyQueue:
         return ret
 
     def empty(self) -> bool:
-        """"""
+        """Checks if the queue is empty"""
         return self.one_s.head is None
