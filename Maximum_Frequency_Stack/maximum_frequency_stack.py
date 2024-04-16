@@ -36,3 +36,40 @@ class FreqStack:
                     break
                 head = head.next
             self.head = Node(val, to_rem, self.head)
+
+    def pop(self):
+        """"""
+        head = self.head
+
+        if head.amount == self.max_:
+            was = head.data
+            self.head = head.next
+            head_1 = self.head
+            while head_1:
+                if head_1.amount == self.max_:
+                    return was
+                head_1 = head_1.next
+            self.max_ -= 1
+            return was
+
+        while head:
+            if head.next and head.next.amount == self.max_:
+                was = head.next.data
+                head.next = head.next.next
+                head_1 = self.head
+                while head_1:
+                    if head_1.amount == self.max_:
+                        return was
+                    head_1 = head_1.next
+                self.max_ -= 1
+                return was
+            head = head.next
+
+    def __str__(self):
+        head = self.head
+        res = 'FreqStack: '
+        while head:
+            res += f'({head.data}, {head.amount}) -> '
+            head = head.next
+
+        return res + 'None'
