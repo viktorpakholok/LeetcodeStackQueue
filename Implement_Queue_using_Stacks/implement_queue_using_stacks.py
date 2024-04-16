@@ -44,3 +44,44 @@ class MyStack:
             res += str(head.data) + ' -> '
             head = head.next
         return res + 'None'
+
+
+class MyQueue:
+    """"""
+    def __init__(self):
+        self.one_s = MyStack()
+        self.sec_s = MyStack()
+
+    def push(self, x: int) -> None:
+        """"""
+        self.one_s.push(x)
+
+    def pop(self) -> int:
+        """"""
+        while self.one_s.head:
+            self.sec_s.push(self.one_s.pop())
+
+        self.one_s, self.sec_s = self.sec_s, self.one_s
+        ret = self.one_s.pop()
+        while self.one_s.head:
+            self.sec_s.push(self.one_s.pop())
+
+        self.one_s, self.sec_s = self.sec_s, self.one_s
+        return ret
+
+    def peek(self) -> int:
+        """"""
+        while self.one_s.head:
+            self.sec_s.push(self.one_s.pop())
+
+        self.one_s, self.sec_s = self.sec_s, self.one_s
+        ret = self.one_s.head.data
+        while self.one_s.head:
+            self.sec_s.push(self.one_s.pop())
+
+        self.one_s, self.sec_s = self.sec_s, self.one_s
+        return ret
+
+    def empty(self) -> bool:
+        """"""
+        return self.one_s.head is None
