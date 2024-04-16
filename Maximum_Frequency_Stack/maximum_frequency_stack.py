@@ -1,7 +1,7 @@
-""""""
+"""A module with an implemented Frequency Stack"""
 
 class Node:
-    """"""
+    """A class representing a node in a linked list"""
     def __init__(self, data, amount = 1, next_ = None):
         self.data = data
         self.amount = amount
@@ -17,12 +17,13 @@ class Node:
 
 
 class FreqStack:
-    """"""
+    """A class representing a frequency stack"""
     def __init__(self):
         self.head = None
         self.max_ = 1
 
     def push(self, val: int) -> None:
+        """Pushes a value onto the frequency stack"""
         if self.head is None:
             self.head = Node(val, 1)
         else:
@@ -37,8 +38,8 @@ class FreqStack:
                 head = head.next
             self.head = Node(val, to_rem, self.head)
 
-    def pop(self):
-        """"""
+    def pop(self) -> int:
+        """Removes and returns the most frequently occurring value from the stack"""
         head = self.head
 
         if head.amount == self.max_:
@@ -65,7 +66,7 @@ class FreqStack:
                 return was
             head = head.next
 
-    def __str__(self):
+    def __str__(self) -> str:
         head = self.head
         res = 'FreqStack: '
         while head:
